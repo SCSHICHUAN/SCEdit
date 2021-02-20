@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>SCEdit</title>
+	<style>
+		body{
+			width: 100%;
+			height: 100%;
+		}
+		#edit{
+			margin: 10px;
+			outline: 0px solid transparent;
+			background-color: rgb(240,240,250);
+			height: 300px;
+			overflow-y: scroll; 
+		}
+	</style>
+</head>
+<body>
+<button id="bold">加粗</button>
+<button id="italics">斜体</button>
+<button id="underline">下划线</button>
+<button id="red">红色</button>
+<button id="black">黑色</button>
+<button id="image">插入图片</button>
+<button id="font">字体大小</button>
+<button id="fontFamily">微软雅黑</button>
+<button id="html">插入Html</button>
+<div id="edit" contenteditable="true"></div>
+
+
+
+
+<script type="text/javascript">
+     
+
+
+    var editDoc = document.getElementById('edit'); 
+    var btnBoldDoc = document.getElementById('bold');
+    var btnItalicsDoc = document.getElementById('italics');
+    var btnUnderlineDoc = document.getElementById('underline');
+    var btnRedDoc = document.getElementById('red');
+    var btnBlackDoc = document.getElementById('black');
+    var btnImageDoc = document.getElementById('image');
+    var btnFontDoc = document.getElementById('font');
+    var btnFontFamilyDoc = document.getElementById('fontFamily');
+    var btnHtmlDoc = document.getElementById('html');
+    
+
+   
+    function focus(){
+		  setTimeout(function(){
+          editDoc.focus();
+      },1000);
+	}
+   
+
+ 
+	
+	//加粗
+	btnBoldDoc.onclick = function(){
+		document.execCommand('bold',false,null);
+		focus();
+
+	}
+	//斜体
+	btnItalicsDoc.onclick = function(){
+        document.execCommand('italic', false, null);
+	}
+	//下划线
+	btnUnderlineDoc.onclick = function(){
+        document.execCommand('underline', false, null);
+	}
+
+	//红色
+	btnRedDoc.onclick = function(){
+		document.execCommand("styleWithCSS", null, true);
+		document.execCommand('foreColor',false,'red');
+		document.execCommand("styleWithCSS", null, false);
+	}
+	//黑色
+	btnBlackDoc.onclick = function(){
+        document.execCommand("styleWithCSS", null, true);
+		document.execCommand('foreColor',false,'rgb(0,0,0)');
+        document.execCommand("styleWithCSS", null, false);
+	}
+    //插入图片
+	btnImageDoc.onclick = function(){
+        document.execCommand('insertImage', false, 'https://stanserver.cn:444/scEdit.png');
+	}
+
+	//字体大小
+	btnFontDoc.onclick = function(){
+        document.execCommand("fontSize", false, '20px');
+	}
+    //字体风格
+	btnFontFamilyDoc.onclick = function(){
+        document.execCommand("fontname", false, '微软雅黑');
+	}
+	//插入html
+	btnHtmlDoc.onclick = function(){
+        document.execCommand("CreateLink", false, 'www.baidu.com');
+        var a = editDoc.innerHTML;
+        console.log(a);
+	}
+
+
+    
+
+
+</script>
+</body>
+</html>
